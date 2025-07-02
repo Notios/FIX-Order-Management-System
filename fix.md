@@ -215,7 +215,7 @@ class Program
 
 ## 2. Acceptor
 
-### 📁 Δομή του Project
+### Δομή του Project
 
 ```
 FixServer/
@@ -257,7 +257,7 @@ public class FixServerApp : MessageCracker, IApplication
     public void OnLogout(SessionID sessionID) => Console.WriteLine("Client logged out");
     public void FromAdmin(Message message, SessionID sessionID) { }
     public void ToAdmin(Message message, SessionID sessionID) { }
-    public void ToApp(Message message, SessionID sessionID) => Console.WriteLine("📤 Sent: " + message);
+    public void ToApp(Message message, SessionID sessionID) => Console.WriteLine("Sent: " + message);
     public void FromApp(Message message, SessionID sessionID) => Crack(message, sessionID);
 
     public void OnMessage(NewOrderSingle order, SessionID sessionID)
@@ -422,7 +422,7 @@ var execReport = new ExecutionReport(
     new ExecID("EXEC123"),           // ID εκτέλεσης (execution ID)
     new ExecType(ExecType.FILL),     // Τύπος εκτέλεσης (π.χ. Fill, PartialFill, Reject)
     new OrdStatus(OrdStatus.FILLED), // Κατάσταση εντολής (π.χ. Filled, New, Rejected)
-    order.Symbol,                    // Σύμβολο της μετοχής από την αρχική εντολή (π.χ. AAPL)
+    order.Symbol,                    // Σύμβολο της μετοχής από την αρχική εντολή (π.χ. ETE)
     order.Side,                      // Κατεύθυνση εντολής (Buy/Sell)
     new LeavesQty(0),                // Υπόλοιπο που απομένει (0 = πλήρως εκτελεσμένη)
     new CumQty(100),                 // Ποσότητα που εκτελέστηκε συνολικά
