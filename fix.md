@@ -443,3 +443,53 @@ Session.SendToTarget(execReport, sessionID);
 | `Logon`          | Client/Server    | Ξεκινά επικοινωνία               |
 | `NewOrderSingle` | Client           | Αγορά/πώληση εντολή              |
 | `ExecutionReport`| Server           | Επιστροφή αποτελέσματος εντολής |
+
+## Εν κατακλείδι
+
+### Προαπαιτούμενα
+
+- Εγκατεστημένο το **.NET 6 ή 7 SDK**
+- Visual Studio 2022 με το workload **.NET Desktop Development**
+- Το NuGet πακέτο **QuickFIXn.FIX4.4**
+- Το αρχείο `FIX44.xml` από το [QuickFIXn repo](https://github.com/connamara/quickfixn/tree/master/spec)
+
+### Βήμα 1: Άνοιξε το Solution
+
+1. Άνοιξε το Visual Studio 2022
+2. Κάνε **File > Open > Project/Solution**
+3. Επίλεξε το `FixDemoSolution.sln` αρχείο που δημιουργήσαμε
+
+### Βήμα 2: Ρύθμισε τα Projects
+
+- Το Solution περιλαμβάνει δύο Projects:
+  - **FixClient** (Initiator)
+  - **FixServer** (Acceptor)
+
+1. Σιγουρέψου ότι και τα δύο έχουν ως Target Framework το `.NET 6` ή `.NET 7`
+2. Πρόσθεσε το NuGet πακέτο με:
+   - `Tools > NuGet Package Manager > Manage NuGet Packages for Solution`
+   - Εγκατέστησε το `QuickFIXn.FIX4.4` σε **FixClient** και **FixServer**
+
+### Βήμα 3: Ετοίμασε τα Config Files
+
+1. Βάλε το `fix.cfg` μέσα σε κάθε project (FixClient και FixServer)
+2. Δημιούργησε έναν φάκελο `spec/` και βάλ’ το `FIX44.xml` εκεί
+   - Update το `fix.cfg`: `DataDictionary=spec/FIX44.xml`
+
+### Βήμα 4: Εκτέλεση
+
+1. Στο Visual Studio, κάνε **δεξί κλικ στο FixServer > Set as Startup Project**
+2. Πάτα **Start (F5)** — θα ανοίξει κονσόλα και θα περιμένει συνδέσεις
+3. Άλλαξε το Startup Project σε **FixClient** (δεξί κλικ > Set as Startup Project)
+4. Ξεκίνα και το Client — θα γίνει `Logon`, θα σταλεί εντολή και θα έρθει απάντηση
+
+### Έλεγχος Logs
+
+- Κάθε project γράφει logs σε φακέλους όπως `log/` και `store/`
+- Εκεί μπορείς να δεις τα **raw FIX messages** σε μορφή π.χ.:
+
+```
+8=FIX.4.4|9=112|35=8|49=SERVER1|56=CLIENT1|...
+```
+
+(Το `|` χρησιμοποιείται εδώ αντί για ASCII χαρακτήρα SOH)
