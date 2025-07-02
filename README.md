@@ -42,3 +42,5 @@
 Πλατφόρμα: .NET 6+
 
 FIX Version: FIX.4.4
+
+> Θα υλοποιήσουμε μια [εφαρμογή](https://github.com/Notios/FIX-Order-Management-System/blob/main/fix.md) με C# σε συνδυασμό με το **QuickFIX/n** όπου είναι ιδανικό για να χτίσουμε FIX εφαρμογές σε .NET περιβάλλον. 
